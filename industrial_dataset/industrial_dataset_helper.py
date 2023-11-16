@@ -10,6 +10,7 @@ import open3d as o3d
 import py7zr
 import requests
 from natsort import natsorted
+import json
 
 
 @dataclass(frozen=False)
@@ -18,17 +19,8 @@ class IndustrialDataset:
     data_root: str = os.environ.get("OPEN3D_DATA_ROOT")
 
     def __post_init__(self):
-        self.file_index = {
-            "EvenTableSinglePartZivid": [
-                "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0001",
-                "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0002",
-                "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0003",
-                "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0004",
-            ],
-            "EvenTableSinglePartRealsense": [
-                "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartRealsense.7z.0001"
-            ],
-        }
+        with open("industrial_dataset_list.json") as json_file:
+            self.file_index = json.load(json_file)
         if not self.data_root:
             logging.debug("Using default download path")
             self.data_root = os.environ.get("HOME") + "/open3d_data"

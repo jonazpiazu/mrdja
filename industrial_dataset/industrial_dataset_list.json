@@ -1,0 +1,11 @@
+{
+    "EvenTableSinglePartRealsense": [
+        "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartRealsense.7z.0001"
+    ],
+    "EvenTableSinglePartZivid": [
+        "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0001",
+        "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0002",
+        "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0003",
+        "https://github.com/jonazpiazu/lanverso-industrial-dataset/raw/main/EvenTableSinglePartZivid.7z.0004"
+    ]
+}
