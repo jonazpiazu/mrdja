@@ -78,6 +78,17 @@ class IndustrialDataset:
         return zip_ref.namelist()
 
 
+def test_all_datasets():
+    with open("industrial_dataset_list.json") as json_file:
+        file_index = json.load(json_file)
+
+    for scene in file_index:
+        dataset = IndustrialDataset(scene=scene)
+        for pcd_path in dataset.paths:
+            pcd = o3d.io.read_point_cloud(pcd_path)
+            print(pcd)
+
+
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -88,32 +99,4 @@ if __name__ == "__main__":
         pcd = o3d.io.read_point_cloud(pcd_path)
         print(pcd)
 
-    dataset = IndustrialDataset(scene="EvenTableZivid")
-    for pcd_path in dataset.paths:
-        pcd = o3d.io.read_point_cloud(pcd_path)
-        print(pcd)
-
-    dataset = IndustrialDataset(scene="EvenTableRealsense")
-    for pcd_path in dataset.paths:
-        pcd = o3d.io.read_point_cloud(pcd_path)
-        print(pcd)
-
-    dataset = IndustrialDataset(scene="EvenTableSinglePartZivid")
-    for pcd_path in dataset.paths:
-        pcd = o3d.io.read_point_cloud(pcd_path)
-        print(pcd)
-
-    dataset = IndustrialDataset(scene="EvenTableSinglePartRealsense")
-    for pcd_path in dataset.paths:
-        pcd = o3d.io.read_point_cloud(pcd_path)
-        print(pcd)
-
-    dataset = IndustrialDataset(scene="EvenTableTwoPartsZivid")
-    for pcd_path in dataset.paths:
-        pcd = o3d.io.read_point_cloud(pcd_path)
-        print(pcd)
-
-    dataset = IndustrialDataset(scene="EvenTableTwoPartsRealsense")
-    for pcd_path in dataset.paths:
-        pcd = o3d.io.read_point_cloud(pcd_path)
-        print(pcd)
+    test_all_datasets()
