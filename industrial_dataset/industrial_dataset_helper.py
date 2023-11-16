@@ -5,9 +5,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-import multivolumefile
 import open3d as o3d
-import py7zr
 import requests
 from natsort import natsorted
 import json
@@ -23,7 +21,7 @@ class IndustrialDataset:
         with open("industrial_dataset_list.json") as json_file:
             self.file_index = json.load(json_file)
         if not self.file_index.get(self.scene):
-            logging.error(f'Dataset {self.scene} does not exist.')
+            logging.error(f"Dataset {self.scene} does not exist.")
             return None
 
         if not self.data_root:
@@ -39,7 +37,9 @@ class IndustrialDataset:
         if not extract_base_dir.exists():
             extract_base_dir.mkdir()
 
-        destination_file = download_path / Path(self.file_index.get(self.scene).split("/")[-1])
+        destination_file = download_path / Path(
+            self.file_index.get(self.scene).split("/")[-1]
+        )
         if destination_file.exists():
             logging.debug("File already downloaded, skipping download")
         else:
@@ -51,16 +51,16 @@ class IndustrialDataset:
         self.paths = None
         if not extract_path.exists():
             extract_path.mkdir()
-            logging.info(f'Created directory {extract_path}')
-        
-            logging.info(f'Extracting {destination_file}')
+            logging.info(f"Created directory {extract_path}")
+
+            logging.info(f"Extracting {destination_file}")
             self.paths = self.unzip_file(destination_file, extract_path)
-            logging.info(f'Extracted to {extract_path}')
+            logging.info(f"Extracted to {extract_path}")
             self.paths = [str(extract_path / Path(x)) for x in self.paths]
 
-        if not self.paths: 
+        if not self.paths:
             self.paths = [str(f) for f in extract_path.iterdir() if f.is_file()]
-        
+
         self.paths = natsorted(self.paths)
 
     def download_file(self, url, destination_file):
@@ -73,7 +73,7 @@ class IndustrialDataset:
             return None
 
     def unzip_file(self, zip_file_path, extract_to_folder):
-        with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+        with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
             zip_ref.extractall(extract_to_folder)
         return zip_ref.namelist()
 
@@ -88,7 +88,32 @@ if __name__ == "__main__":
         pcd = o3d.io.read_point_cloud(pcd_path)
         print(pcd)
 
-    dataset = IndustrialDataset(scene="UnEvenTableSinglePartZivid")
+    dataset = IndustrialDataset(scene="EvenTableZivid")
+    for pcd_path in dataset.paths:
+        pcd = o3d.io.read_point_cloud(pcd_path)
+        print(pcd)
+
+    dataset = IndustrialDataset(scene="EvenTableRealsense")
+    for pcd_path in dataset.paths:
+        pcd = o3d.io.read_point_cloud(pcd_path)
+        print(pcd)
+
+    dataset = IndustrialDataset(scene="EvenTableSinglePartZivid")
+    for pcd_path in dataset.paths:
+        pcd = o3d.io.read_point_cloud(pcd_path)
+        print(pcd)
+
+    dataset = IndustrialDataset(scene="EvenTableSinglePartRealsense")
+    for pcd_path in dataset.paths:
+        pcd = o3d.io.read_point_cloud(pcd_path)
+        print(pcd)
+
+    dataset = IndustrialDataset(scene="EvenTableTwoPartsZivid")
+    for pcd_path in dataset.paths:
+        pcd = o3d.io.read_point_cloud(pcd_path)
+        print(pcd)
+
+    dataset = IndustrialDataset(scene="EvenTableTwoPartsRealsense")
     for pcd_path in dataset.paths:
         pcd = o3d.io.read_point_cloud(pcd_path)
         print(pcd)

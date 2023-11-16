@@ -1,3 +1,8 @@
 {
-    "UnEvenTableSinglePartZivid": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/UnEvenTableSinglePartZividFull.zip"
+    "EvenTableZivid": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/EvenTableZivid.zip",
+    "EvenTableRealsense": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/EvenTableRealsense.zip",
+    "EvenTableSinglePartZivid": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/EvenTableSinglePartZivid.zip",
+    "EvenTableSinglePartRealsense": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/EvenTableSinglePartRealsense.zip",
+    "EvenTableTwoPartsZivid": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/EvenTableTwoPartsZivid.zip",
+    "EvenTableTwoPartsRealsense": "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/releases/download/initial-dataset-upload/EvenTableTwoPartsRealsense.zip"
 }
